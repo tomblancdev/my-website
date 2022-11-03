@@ -1,6 +1,6 @@
 import { ChevronRightIcon } from "@heroicons/react/24/solid";
 
-export default function Navbar() {
+export default function Navbar(props: { [key: string]: any }) {
   return (
     <div className="text-white p-2 flex flex-row w-full">
       <button className="relative animate-pulse">
