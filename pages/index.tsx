@@ -3,7 +3,9 @@ import ConsolasWriter, {
   useWriter,
 } from "../components/consolas/effects/consolasWriter";
 
+// Creatign variable to look for the right text to write
 let i = 0;
+// Creating the text to write row by row
 let values = [
   "Just click to begin",
   "Not really easy to use",
@@ -16,8 +18,11 @@ let values = [
   "...",
   "My Website",
 ];
+
 export default function Home() {
+  // Text to write using the consolaswriting effect
   const [writer, setWriter] = useWriter(values[i], 50, 100);
+  // State to store the history of text
   const [history, setHistory] = useState<string[]>([]);
 
   return (
