@@ -8,7 +8,7 @@ let values = [
   "Just click to begin",
   "Not really easy to use",
   "...",
-  "This is a simple website I made to prensent myself",
+  "This is a simple website I made to introduce myself",
   "So you can know me better",
   "Then",
   "...",
