@@ -1,45 +1,52 @@
-import Head from "next/head";
-import Image from "next/image";
 import { useEffect, useState } from "react";
-import Consolas from "../components/consolas/consolas";
+import ConsolasWriter, {
+  useWriter,
+} from "../components/consolas/effects/consolasWriter";
 
-function useConsole(
-  text: string,
-  minDelay: number = 50,
-  maxDelay: number = 100
-) {
-  const [writer, setConsole] = useState("");
-  useEffect(() => {
-    console.log(text);
-    let timeout: Array<NodeJS.Timeout> = [];
-    let randomDelay = 0;
-    for (let i = 0; i < text.length; i++) {
-      randomDelay =
-        randomDelay +
-        Math.floor(Math.random() * (maxDelay - minDelay) + minDelay);
-      timeout.push(
-        setTimeout(() => {
-          setConsole((prev) => prev + text[i]);
-        }, randomDelay)
-      );
-    }
-    return () => {
-      timeout.forEach((t) => clearTimeout(t));
-    };
-  }, []);
-  return writer;
-}
-
+let i = 0;
+let values = [
+  "Just click to begin",
+  "Not really easy to use",
+  "...",
+  "This is a simple website I made to prensent myself",
+  "So you can know me better",
+  "Then I let you discover",
+  "...",
+  "My Website",
+];
 export default function Home() {
-  let writer = useConsole("Welcome in the next world ", 50, 300);
+  const [writer, setWriter] = useWriter(values[i], 50, 100);
+  const [history, setHistory] = useState<string[]>([]);
 
   return (
-    <div className="h-full w-full flex flex-col items-center justify-center text-white p-2">
-      <h1 className="text-4xl">
-        {"> "}
-        {writer}
-        <b className="animate-ping">|</b>
-      </h1>
+    <div
+      className="h-full w-full flex flex-col items-center justify-center text-white p-2"
+      onClick={() => {
+        if (i < values.length) {
+          setHistory((prev) => [...prev, values[i - 1]]);
+          i++;
+          if (i < values.length) {
+            setWriter(values[i]);
+          } else {
+            setWriter("");
+          }
+        }
+      }}
+    >
+      {history.map((h, index) => (
+        <p key={index} className="text-center">
+          {h}
+        </p>
+      ))}
+      {writer ? (
+        <p className="text-2xl text-center">
+          {"> "}
+          {writer}
+          <b className="animate-ping">|</b>
+        </p>
+      ) : (
+        ""
+      )}
     </div>
   );
 }
