@@ -10,7 +10,9 @@ let values = [
   "...",
   "This is a simple website I made to prensent myself",
   "So you can know me better",
-  "Then I let you discover",
+  "Then",
+  "...",
+  "I let you discover",
   "...",
   "My Website",
 ];
@@ -20,7 +22,7 @@ export default function Home() {
 
   return (
     <div
-      className="h-full w-full flex flex-col items-center justify-center text-white p-2"
+      className="h-full w-full flex flex-col items-center justify-center text-white p-2 select-none"
       onClick={() => {
         if (i < values.length) {
           setHistory((prev) => [...prev, values[i - 1]]);
