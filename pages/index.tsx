@@ -34,12 +34,12 @@ export default function Home() {
       }}
     >
       {history.map((h, index) => (
-        <p key={index} className="text-center">
+        <p key={index} className="text-center md:text-2xl">
           {h}
         </p>
       ))}
       {writer ? (
-        <p className="text-2xl text-center">
+        <p className="text-2xl md:text-4xl text-center">
           {"> "}
           {writer}
           <b className="animate-ping">|</b>
