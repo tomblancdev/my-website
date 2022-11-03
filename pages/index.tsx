@@ -10,7 +10,9 @@ let values = [
   "...",
   "This is a simple website I made to prensent myself",
   "So you can know me better",
-  "Then I let you discover",
+  "Then",
+  "...",
+  "I let you discover",
   "...",
   "My Website",
 ];
