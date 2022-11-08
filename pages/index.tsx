@@ -19,6 +19,51 @@ let values = [
   "My Website",
 ];
 
+/**
+ *
+ *  @returns
+ */
+function LayoutMenu() {
+  let [transition, setTransition] = useState("opacity-0 scale-0");
+
+  let pages = [
+    { name: "About me", url: "/about" },
+    { name: "How does this website works", url: "/website_tuto" },
+    { name: "My Projects", url: "/projects" },
+  ];
+
+  useEffect(() => {
+    let timeout = setTimeout(() => {
+      setTransition("opacity-100 scale-100");
+    }, 1);
+    return () => {
+      clearTimeout(timeout);
+    };
+  }, []);
+
+  return (
+    <div
+      className={
+        "max-md:absolute max-md:bg-neutral-700/90 md:h-1/3 rounded-2xl w-screen grid grid-cols-1 grid-rows-1 md:grid-cols-3 md:grid-rows-1 gap-8 p-20 transition duration-1000 " +
+        transition
+      }
+    >
+      {pages.map((page, key) => {
+        return (
+          <a href={page.url} key={key}>
+            {" "}
+            <div className="h-full w-full bg-white opacity-60 rounded-2xl flex flex-col justify-center items-center scale-95 transition hover:scale-105">
+              <h1 className="text-2xl md:text-4xl text-center p-5">
+                {page.name}
+              </h1>
+            </div>
+          </a>
+        );
+      })}
+    </div>
+  );
+}
+
 export default function Home() {
   // Text to write using the consolaswriting effect
   const [writer, setWriter] = useWriter(values[i], 50, 100);
@@ -27,33 +72,32 @@ export default function Home() {
 
   return (
     <div
-      className="h-full w-full flex flex-col items-center justify-center text-white p-2 select-none"
+      className="h-full w-full flex flex-col items-center justify-center p-2 select-none"
       onClick={() => {
-        if (i < values.length) {
+        if (i < values.length - 1) {
           setHistory((prev) => [...prev, values[i - 1]]);
           i++;
           if (i < values.length) {
             setWriter(values[i]);
-          } else {
-            setWriter("");
           }
         }
       }}
     >
-      {history.map((h, index) => (
-        <p key={index} className="text-center md:text-2xl">
-          {h}
-        </p>
-      ))}
-      {writer ? (
-        <p className="text-2xl md:text-4xl text-center">
-          {"> "}
-          {writer}
-          <b className="animate-ping">|</b>
-        </p>
-      ) : (
-        ""
-      )}
+      <div className="text-white">
+        {history.map((h, index) => (
+          <p key={index} className="text-center md:text-2xl">
+            {h}
+          </p>
+        ))}
+        {writer && (
+          <p className="text-2xl md:text-4xl text-center">
+            {"> "}
+            {writer}
+            <b className="animate-ping">|</b>
+          </p>
+        )}
+      </div>
+      {i == values.length - 1 && <LayoutMenu />}
     </div>
   );
 }
