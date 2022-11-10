@@ -21,7 +21,7 @@ let values = [
 
 /**
  *
- *  @returns
+ * @returns The Layout menu
  */
 function LayoutMenu() {
   let [transition, setTransition] = useState("opacity-0 scale-0");
@@ -50,13 +50,14 @@ function LayoutMenu() {
     >
       {pages.map((page, key) => {
         return (
-          <a href={page.url} key={key}>
-            {" "}
-            <div className="h-full w-full bg-white opacity-60 rounded-2xl flex flex-col justify-center items-center scale-95 transition hover:scale-105">
-              <h1 className="text-2xl md:text-4xl text-center p-5">
-                {page.name}
-              </h1>
-            </div>
+          <a
+            href={page.url}
+            key={key}
+            className="h-full w-full bg-white opacity-60 rounded-2xl flex flex-col justify-center items-center  transition hover:opacity-75 hover:scale-105 focus:opacity-75 scale-95 focus:scale-105"
+          >
+            <h1 className="text-2xl md:text-4xl text-center p-5">
+              {page.name}
+            </h1>
           </a>
         );
       })}
