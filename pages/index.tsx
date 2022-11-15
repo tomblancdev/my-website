@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import ConsolasWriter, {
   useWriter,
 } from "../components/consolas/effects/consolasWriter";
+import { useKeyDown } from "../components/hooks/keyEvents";
 
 // Creatign variable to look for the right text to write
 let i = 0;
@@ -53,7 +54,9 @@ function LayoutMenu() {
           <a
             href={page.url}
             key={key}
-            className="h-full w-full bg-white opacity-60 rounded-2xl flex flex-col justify-center items-center  transition hover:opacity-75 hover:scale-105 focus:opacity-75 scale-95 focus:scale-105"
+            className={
+              "h-full w-full bg-white opacity-60 rounded-2xl flex flex-col justify-center items-center  transition hover:opacity-75 hover:scale-105 focus:opacity-75 scale-95 focus:scale-105"
+            }
           >
             <h1 className="text-2xl md:text-4xl text-center p-5">
               {page.name}
@@ -70,6 +73,20 @@ export default function Home() {
   const [writer, setWriter] = useWriter(values[i], 50, 100);
   // State to store the history of text
   const [history, setHistory] = useState<string[]>([]);
+
+  let keyPressed = useKeyDown();
+
+  useEffect(() => {
+    if (keyPressed?.key === "Enter") {
+      if (i < values.length - 1) {
+        setHistory((prev) => [...prev, values[i - 1]]);
+        i++;
+        if (i < values.length) {
+          setWriter(values[i]);
+        }
+      }
+    }
+  }, [keyPressed]);
 
   return (
     <div
