@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useState } from "react";
-import Command from "./command";
+import MyCommand from "./command";
 import { useKeyDown } from "../hooks/keyEvents";
 import { useRouter } from "next/router";
 
@@ -23,7 +23,7 @@ export default function Consolas() {
         (consoleActive ? "visible" : "hidden")
       }
     >
-      <Command />
+      <MyCommand />
     </div>
   );
 }
