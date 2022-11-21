@@ -1,3 +1,7 @@
+interface paramsInterface {
+  params: { [key: string]: string | number | boolean };
+  noIdentifiersParams: string[];
+}
 /**
  * Configuration of each param into a Command config object
  */
@@ -46,27 +50,97 @@ export class CommandField {
   }
 }
 
+/**
+ * String field for commands
+ */
 export class StringField extends CommandField {
+  /**
+   *
+   * @param name name of the parameter used into the callback function
+   */
   constructor(name: string) {
     super(name, "string");
   }
 }
 
+/**
+ * Number field for commands
+ */
 export class NumberField extends CommandField {
+  /**
+   *
+   * @param name name of the parameter used into the callback function
+   */
   constructor(name: string) {
     super(name, "number");
   }
 }
 
+/**
+ * Boolean field for commands
+ */
 export class BooleanField extends CommandField {
+  /**
+   *
+   * @param name name of the parameter used into the callback function
+   */
   constructor(name: string) {
     super(name, "boolean");
   }
 }
 
-interface paramsInterface {
-  params: { [key: string]: string | number | boolean };
-  noIdentifiersParams: string[];
+/**
+ * Result object due to command execution
+ */
+export class CommandResult {
+  /**
+   *
+   * @param result result of the command execution
+   * @param type type of the result
+   */
+  constructor(
+    public type: "success" | "error" | "warning",
+    public result?: any
+  ) {}
+}
+
+/**
+ * Error object due to command execution
+ */
+export class ErrorResult extends CommandResult {
+  /**
+   *
+   * @param result result of the command execution
+   */
+  constructor(result?: any) {
+    super("error", result);
+  }
+}
+
+/**
+ * Warning object due to command execution
+ */
+export class WarningResult extends CommandResult {
+  /**
+   *
+   * @param result result of the command execution
+   */
+  constructor(result?: any) {
+    super("warning", result);
+  }
+}
+
+/**
+ * Success object due to command execution
+ */
+export class SuccessResult extends CommandResult {
+  /**
+   *
+   * @param result result of the command execution
+   */
+  constructor(result?: any) {
+    super("success", result);
+  }
 }
 
 /**
@@ -93,8 +167,11 @@ export class CommandConfig {
   execute(params: string[]) {
     // get each pair of param value from the params array
     let commandOptions = this.getParams(params);
-    // execute the callback with the parameters
-    this.callback(commandOptions.params, commandOptions.noIdentifiersParams);
+    // execute the callback with the parameters and return the result
+    return this.callback(
+      commandOptions.params,
+      commandOptions.noIdentifiersParams
+    );
   }
 
   /**
@@ -135,4 +212,8 @@ export class CommandConfig {
     }
     return { params: params, noIdentifiersParams: noIdentifierParams };
   }
+}
+
+export class HistoryItem {
+  constructor(public command: string, public result: CommandResult) {}
 }

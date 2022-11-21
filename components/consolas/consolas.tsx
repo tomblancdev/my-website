@@ -1,29 +1,35 @@
 import { useCallback, useEffect, useState } from "react";
-import MyCommand from "./command";
-import { useKeyDown } from "../hooks/keyEvents";
-import { useRouter } from "next/router";
+import Command from "./command";
+import { CommandResult, HistoryItem } from "./utils/commands";
 
-export default function Consolas() {
-  let [consoleActive, seConsoleActive] = useState(false);
-  let keyPressed = useKeyDown();
-  const router = useRouter();
+export default function Consolas(props: { [key: string]: any }) {
+  let [history, setHistory] = useState<HistoryItem[]>([]);
 
-  useEffect(() => {
-    if (keyPressed?.key === "/") {
-      seConsoleActive(true);
-    } else if (keyPressed?.key === "Escape") {
-      seConsoleActive(false);
-    }
-  }, [keyPressed]);
+  function addToHistory(historyItem: HistoryItem) {
+    setHistory((prev) => [...prev, historyItem]);
+  }
 
   return (
-    <div
-      className={
-        "z-50 absolute w-screen h-screen p-20 bg-black bg-opacity-75 " +
-        (consoleActive ? "visible" : "hidden")
-      }
-    >
-      <MyCommand />
+    <div className={props.className}>
+      <Command
+        commandList={props.commandList}
+        toWrite={props.toWrite}
+        addToHistory={addToHistory}
+      />
+      <div className="flex flex-col-reverse">
+        {history.map((item, i) => (
+          <div key={i}>
+            <p className="font-bold">{item.command}</p>
+            <p
+              className={
+                item.result.type === "error" ? "text-red-500" : "text-green-500"
+              }
+            >
+              {item.result ? item.result.result : ""}
+            </p>
+          </div>
+        ))}
+      </div>
     </div>
   );
 }
