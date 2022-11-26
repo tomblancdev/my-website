@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import ConsolasWriter, {
   useWriter,
-} from "../components/consolas/effects/consolasWriter";
+} from "../components/consolas/hooks/consolasWriter";
 import { useKeyDown } from "../components/hooks/keyEvents";
 
 // Creatign variable to look for the right text to write

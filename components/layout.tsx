@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import Consolas from "./consolas/consolas";
 import {
   CommandConfig,
+  HistoryItem,
   StringField,
   SuccessResult,
 } from "./consolas/utils/commands";
@@ -10,9 +11,14 @@ import { useKeyDown } from "./hooks/keyEvents";
 import Navbar from "./navbar";
 
 export default function Layout({ children }: { children: React.ReactNode }) {
-  // CONSOLAS
+  // CONSOLAS CONFIGURATION
+  // Status of the console (open or closed)
   let [consoleActive, seConsoleActive] = useState(false);
+  // The history of the console (the commands executed)
+  let [history, setHistory] = useState<HistoryItem[]>([]);
+  // Listen to the keydown event
   let keyPressed = useKeyDown();
+  // Router to navigate
   const router = useRouter();
 
   useEffect(() => {
@@ -23,7 +29,9 @@ export default function Layout({ children }: { children: React.ReactNode }) {
     }
   }, [keyPressed]);
 
+  // List of commands used by the console
   let dist = {
+    // command to go to a page
     cd: new CommandConfig(
       { "-p": new StringField("path") },
       (params, noIdentifiersParams) => {

@@ -1,8 +1,22 @@
 import { useCallback, useEffect, useState } from "react";
 import Command from "./command";
-import { CommandResult, HistoryItem } from "./utils/commands";
+import { CommandConfig, CommandResult, HistoryItem } from "./utils/commands";
 
-export default function Consolas(props: { [key: string]: any }) {
+interface propsInterface {
+  commandList: { [key: string]: CommandConfig };
+  className?: string;
+}
+
+/**
+ * The first console component
+ * @param commandList The list of commands used by the console
+ * @param className ClassName of the console component
+ * @returns The first created console
+ */
+export default function Consolas({
+  commandList,
+  className = "",
+}: propsInterface) {
   let [history, setHistory] = useState<HistoryItem[]>([]);
 
   function addToHistory(historyItem: HistoryItem) {
@@ -10,12 +24,8 @@ export default function Consolas(props: { [key: string]: any }) {
   }
 
   return (
-    <div className={props.className}>
-      <Command
-        commandList={props.commandList}
-        toWrite={props.toWrite}
-        addToHistory={addToHistory}
-      />
+    <div className={className}>
+      <Command commandList={commandList} addToHistory={addToHistory} />
       <div className="flex flex-col-reverse">
         {history.map((item, i) => (
           <div key={i}>
