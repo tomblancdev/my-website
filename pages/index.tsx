@@ -68,7 +68,7 @@ function LayoutMenu() {
   );
 }
 
-export default function Home() {
+export default function Home(props: { [key: string]: any }) {
   // Text to write using the consolaswriting effect
   const [writer, setWriter] = useWriter(values[i], 50, 100);
   // State to store the history of text
@@ -77,12 +77,14 @@ export default function Home() {
   let keyPressed = useKeyDown();
 
   useEffect(() => {
-    if (keyPressed?.key === "Enter") {
-      if (i < values.length - 1) {
-        setHistory((prev) => [...prev, values[i - 1]]);
-        i++;
-        if (i < values.length) {
-          setWriter(values[i]);
+    if (!props.consoleActive) {
+      if (keyPressed?.key === "Enter") {
+        if (i < values.length - 1) {
+          setHistory((prev) => [...prev, values[i - 1]]);
+          i++;
+          if (i < values.length) {
+            setWriter(values[i]);
+          }
         }
       }
     }

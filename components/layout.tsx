@@ -9,6 +9,7 @@ import {
 } from "./consolas/utils/commands";
 import { useKeyDown } from "./hooks/keyEvents";
 import Navbar from "./navbar";
+import { addPropsToChildren } from "./utils/passProps";
 
 export default function Layout({ children }: { children: React.ReactNode }) {
   // CONSOLAS CONFIGURATION
@@ -63,7 +64,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
         />
       )}
       <Navbar />
-      {children}
+      {addPropsToChildren(children, { consoleActive })}
     </div>
   );
 }
