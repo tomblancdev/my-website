@@ -64,7 +64,9 @@ export default function Layout({ children }: { children: React.ReactNode }) {
         />
       )}
       <Navbar />
-      {addPropsToChildren(children, { consoleActive })}
+      <div className="h-full w-full flex flex-row items-center justify-center overflow-hidden">
+        {addPropsToChildren(children, { consoleActive })}
+      </div>
     </div>
   );
 }

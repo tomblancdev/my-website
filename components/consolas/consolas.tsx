@@ -25,7 +25,11 @@ export default function Consolas({
 
   return (
     <div className={className}>
-      <Command commandList={commandList} addToHistory={addToHistory} />
+      <Command
+        className="flex flex-row"
+        commandList={commandList}
+        addToHistory={addToHistory}
+      />
       <div className="flex flex-col-reverse">
         {history.map((item, i) => (
           <div key={i}>

@@ -62,7 +62,7 @@ interface propsInterface {
  * @param className The class name to add
  */
 export default function Command({
-  toWrite = "abcdefghijklmnopqrstuvwxyzAZERTYUIOPQSDFGHJKLMWXCVBN0123456789- ",
+  toWrite = "abcdefghijklmnopqrstuvwxyzAZERTYUIOPQSDFGHJKLMWXCVBN0123456789-/ ",
   commandList,
   addToHistory,
   className,
@@ -93,7 +93,7 @@ export default function Command({
 
   return (
     <span className={className}>
-      <p style={{ whiteSpace: "pre" }}>{command}</p>
+      <p className="whitespace-pre">{command}</p>
       <p className="animate-ping">|</p>
     </span>
   );
