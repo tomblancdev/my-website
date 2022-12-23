@@ -2,6 +2,24 @@ import React, { useEffect, useRef, useState } from "react";
 import { useWriter } from "../../components/consolas/hooks/consolasWriter";
 import Dropdown from "../../components/inputs/dropdown";
 
+var strReg1 = /"(.*?)"/g,
+  strReg2 = /'(.*?)'/g,
+  specialReg =
+    /\b(new|var|if|do|function|while|switch|for|foreach|in|continue|break)(?=[^\w])/g,
+  specialJsGlobReg =
+    /\b(document|window|Array|String|Object|Number|\$)(?=[^\w])/g,
+  specialJsReg =
+    /\b(getElementsBy(TagName|ClassName|Name)|getElementById|typeof|instanceof)(?=[^\w])/g,
+  specialMethReg = /\b(indexOf|match|replace|toString|length)(?=[^\w])/g,
+  specialPhpReg = /\b(define|echo|print_r|var_dump)(?=[^\w])/g,
+  specialCommentReg = /(\/\*.*\*\/)/g,
+  inlineCommentReg = /(\/\/.*)/g;
+
+var htmlTagReg = /(&lt;[^\&]*&gt;)/g;
+
+var sqlReg =
+  /\b(CREATE|ALL|DATABASE|TABLE|GRANT|PRIVILEGES|IDENTIFIED|FLUSH|SELECT|UPDATE|DELETE|INSERT|FROM|WHERE|ORDER|BY|GROUP|LIMIT|INNER|OUTER|AS|ON|COUNT|CASE|TO|IF|WHEN|BETWEEN|AND|OR)(?=[^\w])/g;
+
 export default function Inputs() {
   let [selected, setSelected] = useState(1);
   let [writer, setWriter] = useWriter("", 1, 5);
