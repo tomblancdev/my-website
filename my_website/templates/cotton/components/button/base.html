@@ -1,0 +1,18 @@
+<c-vars type="button"
+        as
+        class
+        href
+        text
+        attrs
+        form
+        name />
+{{ attrs }}
+{% if as == "a" or href %}
+  <c-components.button.link :href="href" :text="text" :class="class">
+    {{ slot }}
+  </c-components.button.link>
+{% else %}
+  <c-components.button.button :type="type" :class="class" :slot="slot" :text="text" :name="name" :form="form">
+    {{ slot }}
+  </c-components.button.button>
+{% endif %}

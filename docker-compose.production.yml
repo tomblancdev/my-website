@@ -1,0 +1,82 @@
+volumes:
+  production_postgres_data:
+  production_postgres_data_backups:
+  production_traefik:
+  production_django_media:
+  production_redis_data:
+
+
+services:
+  django: &django
+    build:
+      context: .
+      dockerfile: ./compose/production/django/Dockerfile
+    restart: unless-stopped
+    image: my_website_production_django
+    volumes:
+      - ../mnt/alpha/django_media:/app/my_website/media:z
+    depends_on:
+      - postgres
+      - redis
+    env_file:
+      - ./.envs/.production/.django
+      - ./.envs/.production/.postgres
+    command: /start
+
+  postgres:
+    build:
+      context: .
+      dockerfile: ./compose/production/postgres/Dockerfile
+    image: my_website_production_postgres
+    restart: unless-stopped
+    volumes:
+      - ../mnt/alpha/postgres_data:/var/lib/postgresql/data
+      - ../mnt/alpha/postgres_backups:/backups
+    env_file:
+      - ./.envs/.production/.postgres
+
+  traefik:
+    build:
+      context: .
+      dockerfile: ./compose/production/traefik/Dockerfile
+    image: my_website_production_traefik
+    restart: unless-stopped
+    depends_on:
+      - django
+    volumes:
+      - ../mnt/alpha/traefik:/etc/traefik/acme
+    ports:
+      - '0.0.0.0:44301:443'
+      - '0.0.0.0:5551:5555'
+
+  redis:
+    image: docker.io/redis:6
+    restart: unless-stopped
+    volumes:
+      - production_redis_data:/data
+
+  celeryworker:
+    <<: *django
+    image: my_website_production_celeryworker
+    command: /start-celeryworker
+
+  celerybeat:
+    <<: *django
+    image: my_website_production_celerybeat
+    command: /start-celerybeat
+
+  flower:
+    <<: *django
+    image: my_website_production_flower
+    command: /start-flower
+
+  nginx:
+    build:
+      context: .
+      dockerfile: ./compose/production/nginx/Dockerfile
+    image: my_website_production_nginx
+    restart: unless-stopped
+    depends_on:
+      - django
+    volumes:
+      - ../mnt/alpha/django_media:/usr/share/nginx/media:ro

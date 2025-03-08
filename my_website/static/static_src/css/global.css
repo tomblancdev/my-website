@@ -1,0 +1,58 @@
+@import 'tailwindcss';
+@plugin '@tailwindcss/typography';
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400..900&display=swap');
+
+.orbitron-regular {
+  font-family: "Orbitron", serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.orbitron-medium {
+  font-family: "Orbitron", serif;
+  font-optical-sizing: auto;
+  font-weight: 500;
+  font-style: normal;
+}
+
+.orbitron-semibold {
+  font-family: "Orbitron", serif;
+  font-optical-sizing: auto;
+  font-weight: 600;
+  font-style: normal;
+}
+
+.orbitron-bold {
+  font-family: "Orbitron", serif;
+  font-optical-sizing: auto;
+  font-weight: 700;
+  font-style: normal;
+}
+
+.orbitron-black {
+  font-family: "Orbitron", serif;
+  font-optical-sizing: auto;
+  font-weight: 900;
+  font-style: normal;
+}
+
+@theme {
+  --font-display: 'Orbitron', sans-serif;
+  --font-display-regular: 'Orbitron', sans-serif;
+  --font-display-medium: 'Orbitron', sans-serif;
+  --font-display-semibold: 'Orbitron', sans-serif;
+  --font-display-bold: 'Orbitron', sans-serif;
+  --font-display-black: 'Orbitron', sans-serif;
+
+  --color-primary: #560bad;
+  --color-secondary: #3f37c9;
+  --color-tertiary: #f72585;
+  --color-success: #0f0;
+  --color-error: #f00;
+  --color-danger: #f00;
+  --color-warning: #ff0;
+  --color-info: #00f;
+  --color-dark: #000;
+  --color-light: #fff;
+}

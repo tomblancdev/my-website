@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% load i18n %}
+{% load tailwind_filters %}
+
+{% block title %}
+  {{ user.username }}
+{% endblock title %}
+{% block content %}
+  <c-components.typography.title>
+    {{ user.username }}
+  </c-components.typography.title>
+  <c-components.separator />
+  <c-components.form method="post" action="{% url 'users:update' %}">
+    {% csrf_token %}
+    {{ form|crispy }}
+    <div>
+      <div>
+        <c-components.forms.submit text="{% translate "Update" %}" />
+      </div>
+    </div>
+  </c-components.form>
+{% endblock content %}

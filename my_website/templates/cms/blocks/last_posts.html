@@ -1,0 +1,14 @@
+{% if posts|length > 0 %}
+  <c-components.section class="min-h-full">
+    <c-components.container class="flex flex-col items-center justify-center gap-10">
+      <c-components.typography.title class="text-center">
+        <c-components.typography.typewriter :words="[ '{{ self.title }}' ]" :speed="100" :loop="False" />
+      </c-components.typography.title>
+      <div class="grid lg:grid-cols-3 gap-2">
+        {% for page in posts %}
+          <c-cms.blog.page-card :page="page" />
+        {% endfor %}
+      </div>
+    </c-components.container>
+  </c-components.section>
+{% endif %}

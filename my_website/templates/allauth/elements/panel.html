@@ -1,0 +1,19 @@
+{% load allauth %}
+
+<div class="flex flex-col">
+  <c-components.typography.title>
+    {% slot title %}
+  {% endslot %}
+</c-components.typography.title>
+{% slot body %}
+{% endslot %}
+{% if slots.actions %}
+  <ul class="flex flex-col gap-1 p-2">
+    {% for action in slots.actions %}
+      <li class="flex">
+        {{ action }}
+      </li>
+    {% endfor %}
+  </ul>
+{% endif %}
+</div>

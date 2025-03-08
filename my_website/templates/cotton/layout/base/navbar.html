@@ -1,0 +1,19 @@
+{% load wagtailcore_tags %}
+{% load i18n %}
+
+<c-components.navigation.navbar :items="[ { 'href': '{{ current_site.root_page.url }}', 'title': '{% translate "Home" %}', 'active': 'true' }, { 'href': '{{ current_site.root_page.url }}about/', 'title': '{% translate "About" %}' },
+  {% if request.user.is_authenticated %}
+    { 'href': '{% url "users:detail" request.user.pk %}', 'title': '{% translate "Profile" %}' }, { 'href': '{% url "account_logout" %}', 'title': '{% translate "Logout" %}' },
+  {% else %}
+    {% if ACCOUNT_ALLOW_REGISTRATION %}
+      { 'href': '{% url 'account_signup' %}', 'title': '{% translate "Sign up" %}' },
+    {% endif %}
+    { 'href': '{% url 'account_login' %}', 'title': '{% translate "Login" %}' },
+  {% endif %}
+  ]">
+  <c-slot name="brand">
+    <c-components.navigation.navbar.brand :href="current_site.root_page.url">
+      tomblanc.fr
+    </c-components.navigation.navbar.brand>
+  </c-slot>
+</c-components.navigation.navbar>

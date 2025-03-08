@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+
+{% load i18n %}
+{% load static %}
+
+{% block title %}
+  User:
+  {{ object.username }}
+{% endblock title %}
+{% block content %}
+  <c-components.container>
+    <div class="flex w-full">
+      <div class="w-full">
+        <c-components.typography.title>
+          {{ object.username }}
+        </c-components.typography.title>
+      </div>
+    </div>
+    {% if object == request.user %}
+      <!-- Action buttons -->
+      <div class="flex w-full">
+        <div class="flex gap-3 w-full">
+          <c-components.button.link href="{% url 'users:update' %}" text="{% translate "My Info" %}" />
+          <c-components.button.link href="{% url 'account_email' %}" text="{% translate "E-Mail" %}" />
+          <c-components.button.link href="{% url 'mfa_index' %}" text="{% translate "MFA" %}" />
+          <!-- Your Stuff: Custom user template urls -->
+        </div>
+      </div>
+      <!-- End Action buttons -->
+    {% endif %}
+  </c-components.container>
+{% endblock content %}

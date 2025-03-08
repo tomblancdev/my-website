@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+
+{% load i18n %}
+
+{% block title %}
+  {% translate "Server Error" %}
+{% endblock title %}
+{% block content %}
+  <c-components.container>
+    <c-components.typography.title>
+      Ooops!!! 500
+    </c-components.typography.title>
+    <h3>
+      {% translate "Looks like something went wrong!" %}
+    </h3>
+    <p>
+      {% translate "We track these errors automatically, but if the problem persists feel free to contact us. In the meantime, try refreshing." %}
+    </p>
+  </c-components.container>
+{% endblock content %}

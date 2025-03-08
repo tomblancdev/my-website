@@ -1,0 +1,30 @@
+{% load i18n %}
+
+<c-vars href
+        text
+        title
+        footer
+        slot />
+<a href="{{ href }}"
+   class="relative rounded-xl h-full w-full overflow-hidden outline hover:outline-4 outline-tertiary">
+  <div class="absolute h-full w-full opacity-0 hover:opacity-100 z-1 backdrop-brightness-50 backdrop-blur-sm backdrop-hue-rotate-60 flex items-center justify-center transition duration-300">
+    <p class="text-white text-2xl font-display-black text-center p-2 m-auto">
+      {{ text }}
+    </p>
+  </div>
+  <div class="flex flex-col items-center gap-2 h-full w-full bg-light/80 backdrop-blur-xl p-2">
+    {% if title %}
+      <c-components.card.title>
+        {{ title }}
+      </c-components.card.title>
+    {% endif %}
+    <div class="grow flex items-center justify-center gap-2 flex-wrap">
+      {{ slot }}
+    </div>
+    {% if footer %}
+      <div>
+        {{ footer }}
+      </div>
+    {% endif %}
+  </div>
+</a>

@@ -1,0 +1,72 @@
+{% load static i18n %}
+{% load render_bundle from webpack_loader %}
+{% load wagtailcore_tags %}
+
+{% wagtail_site as current_site %}
+<c-vars title="My Website"
+        description="The Tom Blanc's website"
+        author="Tom Blanc"
+        bodyclass=""
+        :messages="None" />
+<!DOCTYPE html>
+{% get_current_language as LANGUAGE_CODE %}
+<html lang="{{ LANGUAGE_CODE }}">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="x-ua-compatible"
+          content="ie=edge" />
+    <title>{{ title }}</title>
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0" />
+    <meta name="description"
+          content="{{ description }}" />
+    <meta name="author"
+          content="{{ author }}" />
+    <link rel="icon"
+          href="{% static 'images/favicons/favicon.ico' %}" />
+    {% render_bundle 'project' 'css' %}
+    <c-slot name="css">
+      <!-- Your stuff: Third-party CSS libraries go here -->
+      <!-- This file stores project-specific CSS -->
+    </c-slot>
+    <!-- Le javascript
+    ================================================== -->
+    {# Placed at the top of the document so pages load faster with defer #}
+    <!-- Vendor dependencies bundled as one file -->
+    {% render_bundle 'vendors' 'js' attrs='defer' %}
+    <!-- place project specific Javascript in this file -->
+    {% render_bundle 'project' 'js' attrs='defer' %}
+    <c-slot name="javascript">
+    </c-slot>
+  </head>
+  <body class="h-screen overflow-hidden flex flex-col">
+    <div class="w-full bg-gray-100">
+      <c-layout.base.navbar />
+    </div>
+    <div class="flex-1 h-full snap-y snap-proximity overflow-y-auto scroll-smooth">
+      {% for message in messages %}
+        <c-components.messages.message :kind="message.tags" :message="message" />
+      {% endfor %}
+      {% if main %}
+        {{ main }}
+      {% endif %}
+      <c-layout.base.footer />
+    </div>
+    <!-- /container -->
+    {% if modal %}
+      {{ modal }}
+    {% endif %}
+    {% comment %}
+Script tags with only code, no src (defer by default). To run
+with a "defer" so that you run inline code:
+<script>
+  window.addEventListener('DOMContentLoaded', () => {
+    /* Run whatever you want */
+  });
+</script>
+    {% endcomment %}
+    {% if inline_javascript %}
+      {{ inline_javascript }}
+    {% endif %}
+  </body>
+</html>

@@ -1,0 +1,17 @@
+{% load i18n %}
+{% load wagtailimages_tags %}
+
+<c-vars page />
+<c-components.card.card-link href="{{ page.url }}" title="{{ page.title }}" text="{% translate "Watch more" %}">
+  {% image page.image width-400 as img %}
+  <img src="{{ img.url }}"
+       alt="{{ img.alt }}"
+       class="rounded-sm w-full object-contain aspect-square" />
+  <c-slot name="footer">
+    <div class="flex items-center justify-center gap-2 flex-wrap">
+      {% for tag in page.tags.all %}
+        <c-components.tag tag="{{ tag }}" />
+      {% endfor %}
+    </div>
+  </c-slot>
+</c-components.card.card-link>

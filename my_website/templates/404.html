@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% load i18n %}
+
+{% block title %}
+  {% translate "Page not found" %}
+{% endblock title %}
+{% block content %}
+  <c-components.container>
+    <c-components.typography.title>
+      {% translate "Page not found" %}
+    </c-components.typography.title>
+    <p>
+      {% if exception %}
+        {{ exception }}
+      {% else %}
+        {% translate "This is not the page you were looking for." %}
+      {% endif %}
+    </p>
+  </c-components.container>
+{% endblock content %}

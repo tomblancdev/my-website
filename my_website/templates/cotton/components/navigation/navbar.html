@@ -1,0 +1,23 @@
+{% load heroicons %}
+{% load i18n %}
+
+<c-vars brand
+        items />
+<nav class="container m-auto p-2">
+  <div class="flex flex-row gap-5">
+    <c-components.modal aria_controls="navbarSupportedContent" aria_label="{% translate "Toogle Navigation" %}" class="md:hidden">
+      <c-slot name="button">
+        <c-components.heroicons.outline tag="bars-3" class="text-gray-500 aspect-square m-auto" />
+      </c-slot>
+      <div class="flex flex-col justify-center items-center gap-2">
+        {{ brand }}
+        <c-components.separator />
+        <c-components.navigation.navbar.item-list :items="items" />
+      </div>
+    </c-components.modal>
+    {{ brand }}
+    <div>
+      <c-components.navigation.navbar.item-list :items="items" class="max-md:hidden" />
+    </div>
+  </div>
+</nav>

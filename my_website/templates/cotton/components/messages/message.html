@@ -1,0 +1,32 @@
+<c-vars kind
+        message="En error occurred"
+        icon />
+<div class="absolute top-6 left-1/2 -translate-x-1/2 w-10/12 p-1 border rounded backdrop-blur-lg flex gap-2 {{ class }} {% if kind == "error" %} bg-error/20 border-error {% elif kind == "success" %} bg-success/20 border-success {% elif kind == "warning" %} bg-warning/20 border-warning {% elif kind == "info" %} bg-info/20 border-info {% else %} bg-gray-500/20 border-gray-500 {% endif %}"
+     x-data="{ show: true }"
+     x-show="show"
+     x-transition>
+  <div class="m-auto h-6 w-6">
+    {% if icon %}
+      {{ icon }}
+    {% elif kind == "error" %}
+      <c-components.heroicons.outline tag="exclamation-circle" class="h-full w-full" />
+    {% elif kind == "success" %}
+      <c-components.heroicons.outline tag="check-circle" class="h-full w-full" />
+    {% elif kind == "warning" %}
+      <c-components.heroicons.outline tag="exclamation" class="h-full w-full" />
+    {% elif kind == "info" %}
+      <c-components.heroicons.outline tag="information-circle" class="h-full w-full" />
+    {% else %}
+      <c-components.heroicons.outline tag="information-circle" class="h-full w-full" />
+    {% endif %}
+  </div>
+  <p class="grow text-center">
+    {{ message }}
+  </p>
+  <button type="button"
+          class="btn-close"
+          @click="show = false"
+          aria-label="Close">
+    <c-components.heroicons.outline tag="x-circle" class="h-full aspect-square" />
+  </button>
+</div>

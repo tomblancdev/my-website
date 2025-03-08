@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% load i18n %}
+
+{% block title %}
+  {% translate "Forbidden" %} (403)
+{% endblock title %}
+{% block content %}
+  <c-components.container>
+    <c-components.typography.title>
+      {% translate "Forbidden" %}(403)
+    </c-components.typography.title>
+    <p>
+      {% if exception %}
+        {{ exception }}
+      {% else %}
+        {% translate "You're not allowed to access this page." %}
+      {% endif %}
+    </p>
+  </c-components.container>
+{% endblock content %}

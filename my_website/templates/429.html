@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% load i18n %}
+
+{% block title %}
+  {% translate "Too many requests" %}
+{% endblock title %}
+{% block content %}
+  <c-components.container>
+    <c-components.typography.title>
+      {% translate "Too many requests" %}
+    </c-components.typography.title>
+    <p>
+      {% if exception %}
+        {{ exception }}
+      {% else %}
+        {% translate "You have made too many requests to this page." %}
+      {% endif %}
+    </p>
+  </c-components.container>
+{% endblock content %}

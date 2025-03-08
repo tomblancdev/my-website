@@ -1,0 +1,16 @@
+{% load i18n %}
+
+<c-layout.base>
+  <c-slot name="main">
+    <c-components.section snap fullheight>
+      <c-components.container class="flex flex-col items-center justify-center gap-2 h-full">
+        <c-components.typography.title class="text-center">
+          <c-components.typography.typewriter :words="[ '{{ settings.cms.CompanyInfoSettings.company_name }}' ]" :speed="100" :loop="False" />
+        </c-components.typography.title>
+        <p class="text-xl text-center">
+          <c-components.typography.typewriter :words="[ '{% translate " Hello there, wait a little bit more to know more about me." %}', '{% translate "You can play with the background !!!" %}', '{% translate "Does the background bug ? 🧐" %}' ]" :speed="50" :loop="True" />
+        </p>
+      </c-components.container>
+    </c-components.section>
+  </c-slot>
+</c-layout.base>

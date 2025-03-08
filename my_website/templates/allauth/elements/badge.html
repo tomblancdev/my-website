@@ -1,0 +1,6 @@
+{% load allauth %}
+
+<c-components.badge class=" text-gray-500 {% if 'success' in attrs.tags %} bg-success {% elif 'info' in attrs.tags %} bg-info {% elif 'warning' in attrs.tags %} bg-warning {% elif 'danger' in attrs.tags %} bg-danger {% elif 'secondary' in attrs.tags %} bg-secondary {% elif 'primary' in attrs.tags %} bg-primary {% endif %} ">
+  {% slot %}
+{% endslot %}
+</c-components.badge>

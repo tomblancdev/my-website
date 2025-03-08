@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+
+{% load i18n %}
+
+{% block css %}
+  {{ block.super }}
+{% endblock css %}
+{% block title %}
+  {% block head_title %}
+    {% trans "Sign In" %}
+  {% endblock head_title %}
+{% endblock title %}
+{% block body %}
+  <div class="flex justify-center h-full py-4">
+    <div class="bg-red-500">
+      {% if messages %}
+        {% for message in messages %}
+          <c-components.messages.message :message="message" kind="{{ message.tags }}" />
+        {% endfor %}
+      {% endif %}
+      <c-components.container>
+        {% block content %}
+        {% endblock content %}
+      </c-components.container>
+      {% block extra_body %}
+      {% endblock extra_body %}
+    </div>
+  </div>
+{% endblock body %}

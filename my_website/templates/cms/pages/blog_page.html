@@ -1,0 +1,27 @@
+{% load wagtailcore_tags wagtailimages_tags %}
+
+<c-layout.base>
+  <c-slot name="main">
+    <c-components.section snap fullheight>
+      <c-components.container class="flex flex-col items-center justify-center gap-2 h-full">
+        {% image page.image original as img %}
+        <img src="{{ img.url }}"
+             alt="{{ img.alt }}"
+             class="rounded-sm w-2/3 max-h-1/3 object-contain" />
+        <c-components.typography.title class="text-center">
+          <c-components.typography.typewriter :words="[ '{{ page.title }}' ]" :speed="100" :loop="False" />
+        </c-components.typography.title>
+        <div class="flex items-center justify-center gap-2 flex-wrap">
+          {% for tag in page.tags.all %}
+            <span class="bg-primary text-white py-1 px-2 rounded-sm font-display">{{ tag }}</span>
+          {% endfor %}
+        </div>
+      </c-components.container>
+    </c-components.section>
+    {% for block in page.body %}
+      <c-components.section class="min-h-full">
+        {% include_block block %}
+      </c-components.section>
+    {% endfor %}
+  </c-slot>
+</c-layout.base>

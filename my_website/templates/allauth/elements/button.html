@@ -1,0 +1,6 @@
+{% load allauth %}
+
+<c-components.button.base class=" {% if 'success' in attrs.tags %} bg-success {% elif 'warning' in attrs.tags %} bg-warning {% elif 'secondary' in attrs.tags %} bg-secondary {% elif 'danger' in attrs.tags %} bg-danger {% elif 'primary' in attrs.tags %} bg-primary {% else %} bg-primary {% endif %} " :href="attrs.href" :type="attrs.type" :form="attrs.form" :id="attrs.id" :name="attrs.name">
+  {% slot %}
+{% endslot %}
+</c-components.button.base>

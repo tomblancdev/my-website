@@ -1,0 +1,17 @@
+<c-vars href
+        slot
+        :active="False"
+        :title="None" />
+<li class="flex {% if active %}font-bold{% endif %}">
+  <a class="mt-auto"
+     href="{{ href }}">
+    {% if title %}
+      {{ title }}
+    {% else %}
+      {{ slot }}
+    {% endif %}
+    {% if active %}
+      <span class="hidden">(current)</span>
+    {% endif %}
+  </a>
+</li>

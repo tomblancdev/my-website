@@ -1,0 +1,33 @@
+<c-layout.base title="{% block title %}{% endblock title %}" description="The Tom Blanc's website" author="Tom Blanc" bodyclass="{% block bodyclass %}{% endblock bodyclass %} " :messages="messages">
+  <c-slot name="css">
+    {% block css %}
+    {% endblock css %}
+  </c-slot>
+  <c-slot name="javascript">
+    {% block javascript %}
+    {% endblock javascript %}
+  </c-slot>
+  <c-slot name="body">
+    {% block body %}
+    {% endblock body %}
+  </c-slot>
+  <c-slot name="main">
+    {% block main %}
+      <c-components.section fullheight>
+        {% block content %}
+          <p>
+            Use this document as a way to quick start any new project.
+          </p>
+        {% endblock content %}
+      </c-components.section>
+    {% endblock main %}
+  </c-slot>
+  <c-slot name="modal">
+    {% block modal %}
+    {% endblock modal %}
+  </c-slot>
+  <c-slot name="inline_javascript">
+    {% block inline_javascript %}
+    {% endblock inline_javascript %}
+  </c-slot>
+</c-layout.base>
