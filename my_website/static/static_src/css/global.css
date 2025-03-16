@@ -1,58 +1,34 @@
 @import 'tailwindcss';
 @plugin '@tailwindcss/typography';
-@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400..900&display=swap');
-
-.orbitron-regular {
-  font-family: "Orbitron", serif;
-  font-optical-sizing: auto;
-  font-weight: 400;
-  font-style: normal;
-}
-
-.orbitron-medium {
-  font-family: "Orbitron", serif;
-  font-optical-sizing: auto;
-  font-weight: 500;
-  font-style: normal;
-}
-
-.orbitron-semibold {
-  font-family: "Orbitron", serif;
-  font-optical-sizing: auto;
-  font-weight: 600;
-  font-style: normal;
-}
-
-.orbitron-bold {
-  font-family: "Orbitron", serif;
-  font-optical-sizing: auto;
-  font-weight: 700;
-  font-style: normal;
-}
-
-.orbitron-black {
-  font-family: "Orbitron", serif;
-  font-optical-sizing: auto;
-  font-weight: 900;
-  font-style: normal;
-}
+@import url('https://fonts.googleapis.com/css2?family=Major+Mono+Display');
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:ital@0;1&display=swap');
 
 @theme {
-  --font-display: 'Orbitron', sans-serif;
-  --font-display-regular: 'Orbitron', sans-serif;
-  --font-display-medium: 'Orbitron', sans-serif;
-  --font-display-semibold: 'Orbitron', sans-serif;
-  --font-display-bold: 'Orbitron', sans-serif;
-  --font-display-black: 'Orbitron', sans-serif;
+  --font-display: 'Roboto Mono', monospace;
+  --font-display-regular: 'Roboto Mono', monospace;
+  --font-display-medium: 'Roboto Mono', monospace;
+  --font-display-semibold: 'Roboto Mono', monospace;
+  --font-display-bold: 'Roboto Mono', monospace;
+  --font-display-black: 'Roboto Mono', monospace;
 
-  --color-primary: #560bad;
-  --color-secondary: #3f37c9;
-  --color-tertiary: #f72585;
+  --font-header: 'Major Mono Display', monospace;
+  --font-header-regular: 'Major Mono Display', monospace;
+  --font-header-medium: 'Major Mono Display', monospace;
+  --font-header-semibold: 'Major Mono Display', monospace;
+  --font-header-bold: 'Major Mono Display', monospace;
+  --font-header-black: 'Major Mono Display', monospace;
+
+  --color-primary: #52b788;
+  --color-secondary: #b7e4c7;
+  --color-accent: #df885a;
+  --color-tertiary: var(--color-accent);
   --color-success: #0f0;
   --color-error: #f00;
   --color-danger: #f00;
   --color-warning: #ff0;
   --color-info: #00f;
-  --color-dark: #000;
-  --color-light: #fff;
+  --color-dark: #081c15;
+  --color-light: #fdfdfd;
+  --color-background: var(--color-dark);
+  --color-text: var(--color-light);
 }
