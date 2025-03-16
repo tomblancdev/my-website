@@ -1,6 +1,6 @@
 <c-vars items
         class />
-<ul class=" flex h-full max-md:flex-col gap-2 {{ class }} "
+<ul class=" flex h-full max-md:flex-col items-center justify-center gap-2 {{ class }} "
     {{ attrs }}>
   {% for item in items %}
     <c-components.navigation.navbar.item :href="item.href" :active="item.active">

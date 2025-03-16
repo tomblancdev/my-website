@@ -2,10 +2,10 @@
 {% load i18n %}
 {% load wagtailimages_tags %}
 
-<footer class="bg-gray-100 p-4 flex flex-col gap-2 items-center">
+<footer class="bg-primary text-dark p-4 flex flex-col gap-2 items-center">
   <div class="container m-auto grid md:grid-cols-3 gap-5">
     <div class="flex flex-col gap-2">
-      <h4 class="text-center font-display text-xl">
+      <h4 class="text-center font-header text-xl">
         {{ settings.cms.CompanyInfoSettings.company_name }}
       </h4>
       {% if settings.cms.CompanyInfoSettings.picture %}
@@ -14,12 +14,12 @@
              alt="{{ img.alt }}"
              class="rounded-full w-24 h-24 object-cover mx-auto" />
       {% endif %}
-      <p class="text-center text-gray-600 italic font-display">
+      <p class="text-center text-dark italic font-display">
         {{ settings.cms.CompanyInfoSettings.quote }}
       </p>
     </div>
     <div class="flex flex-col gap-2 items-center">
-      <h4 class="text-center font-display text-xl">
+      <h4 class="text-center font-header text-xl">
         {% translate "Stay in touch" %}
       </h4>
       {% if settings.cms.SocialMediaSettings.github %}
@@ -46,7 +46,7 @@
       {% endif %}
     </div>
     <div class="flex flex-col gap-2">
-      <h4 class="text-center font-display text-xl">
+      <h4 class="text-center font-header text-xl">
         {% translate "Contact me" %}
       </h4>
       {% if settings.cms.SocialMediaSettings.email %}
@@ -59,7 +59,7 @@
     </div>
   </div>
   {% if settings.cms.CopyRightSettings.year and settings.cms.CopyRightSettings.company %}
-    <p class="text-center text-gray-600">
+    <p class="text-center text-secondary">
       © {{ settings.cms.CopyRightSettings.year }} {{ settings.cms.CopyRightSettings.company }}. All rights reserved.
     </p>
   {% endif %}

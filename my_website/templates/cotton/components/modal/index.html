@@ -16,10 +16,10 @@
     {% if button %}
       {{ button }}
     {% else %}
-      <c-components.heroicons.outline tag="bars-3" class="text-gray-500 aspect-square" />
+      <c-components.heroicons.outline tag="bars-3" class="aspect-square" />
     {% endif %}
   </button>
-  <div class="absolute top-0 left-0 w-full h-full bg-black/20 bg-opacity-50 backdrop-blur-md flex justify-center items-center p-4 z-50"
+  <div class="absolute top-0 left-0 w-full h-full bg-background/20 bg-opacity-50 backdrop-blur-md flex justify-center items-center p-4 z-50"
        id="{{ aria_controls }}"
        x-show="open"
        x-transition:enter="transition ease-out duration-300"
@@ -28,10 +28,10 @@
        x-transition:leave="transition ease-in duration-300"
        x-transition:leave-start="opacity-100"
        x-transition:leave-end="opacity-0">
-    <div class="bg-white p-2 w-full rounded-md shadow-md">
+    <div class="bg-primary text-dark p-2 w-full rounded-md shadow-md">
       <div class="flex justify-end">
         <button @click="open = false">
-          <c-components.heroicons.outline tag="x-mark" class="text-gray-500" />
+          <c-components.heroicons.outline tag="x-mark" />
         </button>
       </div>
       <div x-on:click.away="open = false">

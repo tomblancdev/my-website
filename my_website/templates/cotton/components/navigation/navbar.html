@@ -7,7 +7,7 @@
   <div class="flex flex-row gap-5">
     <c-components.modal aria_controls="navbarSupportedContent" aria_label="{% translate "Toogle Navigation" %}" class="md:hidden">
       <c-slot name="button">
-        <c-components.heroicons.outline tag="bars-3" class="text-gray-500 aspect-square m-auto" />
+        <c-components.heroicons.outline tag="bars-3" class="aspect-square m-auto" />
       </c-slot>
       <div class="flex flex-col justify-center items-center gap-2">
         {{ brand }}
@@ -16,7 +16,7 @@
       </div>
     </c-components.modal>
     {{ brand }}
-    <div>
+    <div class="grow">
       <c-components.navigation.navbar.item-list :items="items" class="max-md:hidden" />
     </div>
   </div>
