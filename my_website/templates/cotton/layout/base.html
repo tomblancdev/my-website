@@ -6,7 +6,9 @@
 <c-vars title="My Website"
         description="The Tom Blanc's website"
         author="Tom Blanc"
+        ogType="website"
         bodyclass=""
+        :ogImage="None"
         :messages="None" />
 <!DOCTYPE html>
 {% get_current_language as LANGUAGE_CODE %}
@@ -22,6 +24,39 @@
           content="{{ description }}" />
     <meta name="author"
           content="{{ author }}" />
+    {% if title %}
+      <meta property="og:title"
+            content="{{ title }}" />
+      <meta property="twitter:title"
+            content="{{ title }}" />
+    {% endif %}
+    {% if description %}
+      <meta property="og:description"
+            content="{{ description }}" />
+      <meta property="twitter:description"
+            content="{{ description }}" />
+    {% endif %}
+    <meta property="og:type"
+          content="{{ ogType }}" />
+    {% if ogImage %}
+      <meta property="og:image"
+            content="{{ ogImage }}" />
+      <meta property="twitter:image"
+            content="{{ ogImage }}" />
+    {% else %}
+      <meta property="og:image"
+            content="{% static 'images/favicons/favicon.ico' %}" />
+      <meta property="twitter:image"
+            content="{% static 'images/favicons/favicon.ico' %}" />
+    {% endif %}
+    <meta property="og:url"
+          content="{{ request.build_absolute_uri }}" />
+    <meta property="og:locale"
+          content="{{ LANGUAGE_CODE }}" />
+    <meta property="og:locale:alternate"
+          content="en_US" />
+    <meta property="og:locale:alternate"
+          content="fr_FR" />
     <link rel="icon"
           href="{% static 'images/favicons/favicon.ico' %}" />
     {% render_bundle 'project' 'css' %}

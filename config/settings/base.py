@@ -89,6 +89,7 @@ THIRD_PARTY_APPS = [
     "webpack_loader",
     "django_cotton",
     "heroicons",
+    "django_check_seo",
 ]
 
 LOCAL_APPS = [

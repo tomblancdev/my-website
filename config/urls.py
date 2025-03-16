@@ -29,6 +29,8 @@ urlpatterns = [
     # User management
     path("users/", include("my_website.users.urls", namespace="users")),
     path("accounts/", include("allauth.urls")),
+    # check-seo
+    path("django-check-seo/", include("django_check_seo.urls")),
     # Your stuff: custom urls includes go here
     # ...
     # Media files
