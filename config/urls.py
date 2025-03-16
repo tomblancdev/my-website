@@ -14,8 +14,9 @@ from rest_framework.authtoken.views import obtain_auth_token
 from wagtail import urls as wagtail_urls
 from wagtail.admin import urls as wagtailadmin_urls
 from wagtail.documents import urls as wagtaildocs_urls
+from django.conf.urls.i18n import i18n_patterns
 
-urlpatterns = [
+i18n_patterns_list = [
     path(
         "about/",
         TemplateView.as_view(template_name="pages/about.html"),
@@ -36,6 +37,8 @@ urlpatterns = [
     # Media files
     *static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT),
 ]
+
+urlpatterns = []
 if settings.DEBUG:
     # Static file serving when using Gunicorn + Uvicorn for local web socket development
     urlpatterns += staticfiles_urlpatterns()
@@ -86,4 +89,6 @@ if settings.DEBUG:
         urlpatterns = [path("__debug__/", include(debug_toolbar.urls))] + urlpatterns
 
 # Wagtail URLs (must be added at the end)
-urlpatterns += [path("", include(wagtail_urls))]
+i18n_patterns_list += [path("", include(wagtail_urls))]
+
+urlpatterns += i18n_patterns(*i18n_patterns_list, prefix_default_language=False)

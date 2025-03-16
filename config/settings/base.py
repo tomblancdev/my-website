@@ -5,6 +5,7 @@ import ssl
 from pathlib import Path
 
 import environ
+from django.utils.translation import gettext_lazy as _
 
 from .apps import wagtail
 
@@ -31,17 +32,17 @@ TIME_ZONE = "Europe/Paris"
 LANGUAGE_CODE = "en-us"
 # https://docs.djangoproject.com/en/dev/ref/settings/#languages
 # from django.utils.translation import gettext_lazy as _
-# LANGUAGES = [
-#     ('en', _('English')),
-#     ('fr-fr', _('French')),
-#     ('pt-br', _('Portuguese')),
-# ]
+LANGUAGES = [
+    ("en", _("English")),
+    ("fr", _("French")),
+]
 # https://docs.djangoproject.com/en/dev/ref/settings/#site-id
 SITE_ID = 1
 # https://docs.djangoproject.com/en/dev/ref/settings/#use-i18n
 USE_I18N = True
 # https://docs.djangoproject.com/en/dev/ref/settings/#use-tz
 USE_TZ = True
+# https://docs.djangoproject.com/en/dev/ref/settings/#std:setting-USE_L10N
 # https://docs.djangoproject.com/en/dev/ref/settings/#locale-paths
 LOCALE_PATHS = [str(BASE_DIR / "locale")]
 
@@ -387,5 +388,9 @@ WAGTAILADMIN_BASE_URL = wagtail.WAGTAILADMIN_BASE_URL
 COTTON_DIR = "cotton"
 COTTON_BASE_DIR = None
 COTTON_SNAKE_CASED_NAMES = True
+# Wagtail i18n
+# ------------------------------------------------------------------------------
+WAGTAIL_I18N_ENABLED = wagtail.WAGTAIL_I18N_ENABLED
+WAGTAIL_CONTENT_LANGUAGES = wagtail.WAGTAIL_CONTENT_LANGUAGES
 # Your stuff...
 # ------------------------------------------------------------------------------
