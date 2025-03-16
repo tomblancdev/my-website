@@ -1,10 +1,10 @@
 {% load wagtailcore_tags wagtailimages_tags %}
 
-<c-layout.base>
+{% image page.image original as img %}
+<c-layout.base :title="page.title" :description="page.description" :author="page.owner" ogType="article" :ogImage="img.url">
   <c-slot name="main">
     <c-components.section snap fullheight>
       <c-components.container class="flex flex-col items-center justify-center gap-2 h-full">
-        {% image page.image original as img %}
         <img src="{{ img.url }}"
              alt="{{ img.alt }}"
              class="rounded-sm w-2/3 max-h-1/3 object-contain" />
