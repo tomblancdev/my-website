@@ -14,7 +14,9 @@ THIRD_PARTY_APPS = [
     "wagtail.embeds",
     "wagtail.sites",
     # "wagtail.users",
-    "wagtail.locales",
+    # "wagtail.locales",
+    "wagtail_localize",
+    "wagtail_localize.locales",  # This replaces "wagtail.locales"
     "wagtail.snippets",
     "wagtail.documents",
     "wagtail.images",
