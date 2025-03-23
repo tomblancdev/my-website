@@ -1,8 +1,10 @@
 {% extends "base.html" %}
 
 {% block main %}
-  <c-components.container>
-    {% block content %}
-    {% endblock content %}
-  </c-components.container>
+  <c-components.section class="min-h-full">
+    <c-components.container>
+      {% block content %}
+      {% endblock content %}
+    </c-components.container>
+  </c-components.section>
 {% endblock main %}

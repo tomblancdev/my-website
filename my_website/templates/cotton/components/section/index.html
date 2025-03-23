@@ -1,6 +1,6 @@
 <c-vars :fullheight="False"
         :snap="False"
         class />
-<section class="section flex flex-col {% if fullheight %}h-full{% endif %} {% if snap %}snap-center{% endif %} {{ class }}">
+<section class="section flex flex-col {% if fullheight %}h-full {% endif %} {% if snap %}snap-center {% endif %}{{ class }}">
   {{ slot }}
 </section>
