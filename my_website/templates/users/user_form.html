@@ -7,17 +7,19 @@
   {{ user.username }}
 {% endblock title %}
 {% block content %}
-  <c-components.typography.title>
-    {{ user.username }}
-  </c-components.typography.title>
-  <c-components.separator />
-  <c-components.form method="post" action="{% url 'users:update' %}">
-    {% csrf_token %}
-    {{ form|crispy }}
-    <div>
+  <c-components.container>
+    <c-components.typography.title>
+      {{ user.username }}
+    </c-components.typography.title>
+    <c-components.separator />
+    <c-components.form method="post" action="{% url 'users:update' %}" class="flex flex-col gap-2">
+      {% csrf_token %}
+      {{ form|crispy }}
       <div>
-        <c-components.forms.submit text="{% translate "Update" %}" />
+        <div>
+          <c-components.form.submit text="{% translate "Update" %}" />
+        </div>
       </div>
-    </div>
-  </c-components.form>
+    </c-components.form>
+  </c-components.container>
 {% endblock content %}
